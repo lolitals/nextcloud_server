@@ -32,6 +32,12 @@ require __DIR__ . '/../../vendor/autoload.php';
  * Features context.
  */
 class FeatureContext implements Context, SnippetAcceptingContext {
+	use AppConfiguration;
+	use Mail;
 	use Search;
 	use WebDav;
+
+	protected function resetAppConfigs() {
+		$this->modifyServerConfig('sharebymail', 'enforcePasswordProtection', 'no');
+	}
 }
